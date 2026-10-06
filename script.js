@@ -1,69 +1,29 @@
-let contactbtn = document.getElementById("contactbtn");
-let contactmessage = document.getElementById("contactmessage");
-
-let username = document.getElementById("username");
-let sendbtn = document.getElementById("sendbtn");
-let sendmessage = document.getElementById("sendmessage");
+// ================================
+// Dynamic Skills
+// ================================
 
 let skillinput = document.getElementById("skillinput");
 let skillbtn = document.getElementById("skillbtn");
 let dynamicskill = document.getElementById("dynamicskill");
 
+skillbtn.addEventListener("click", function () {
 
-// Contact button
-let isvisible = true;
+    let skill = skillinput.value.trim();
 
-contactbtn.addEventListener("click", function() {
-
-    contactmessage.textContent = "Thank you for contacting me!";
-
-    contactbtn.style.backgroundColor = "green";
-    contactbtn.style.color = "white";
-
-    if (isvisible) {
-        contactmessage.style.display = "none";
-        isvisible = false;
-    } else {
-        contactmessage.style.display = "block";
-        isvisible = true;
-    }
-
-});
-
-
-// Send message
-sendbtn.addEventListener("click", function(event) {
-
-    event.preventDefault();
-
-    if (username.value === "") {
-        sendmessage.textContent = "Please enter your name!";
-    } else {
-        sendmessage.textContent = "Thank you, " + username.value + "!";
-    }
-
-});
-
-
-// Add skill
-skillbtn.addEventListener("click", function() {
-
-    if (skillinput.value !== "") {
+    if (skill !== "") {
 
         let newskill = document.createElement("li");
-
-        newskill.textContent = skillinput.value;
+        newskill.textContent = skill;
 
         let removebtn = document.createElement("button");
-
         removebtn.textContent = "Remove";
+        removebtn.type = "button";
 
-        removebtn.addEventListener("click", function() {
+        removebtn.addEventListener("click", function () {
             newskill.remove();
         });
 
         newskill.appendChild(removebtn);
-
         dynamicskill.appendChild(newskill);
 
         skillinput.value = "";
